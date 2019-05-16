@@ -1,14 +1,14 @@
-chrome.runtime.onInstalled.addListener(function() {
-   chrome.storage.sync.set({color: '#3aa757'}, function() {
-     console.log('The color is green.');
-   });
-   chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
-     chrome.declarativeContent.onPageChanged.addRules([{
-       conditions: [new chrome.declarativeContent.PageStateMatcher({
-         pageUrl: {hostEquals: 'developer.chrome.com'},
-       })
-       ],
-           actions: [new chrome.declarativeContent.ShowPageAction()]
-     }]);
-   });
- });
+chrome.runtime.onMessage.addListener(
+    function(arg, sender, sendResponse) {
+        if(arg && arg.option && arg.option==='download') {
+            if(arg.array && arg.array.length && arg.array[0].length) {
+                var text = arg.array[0].join('\n\t\n\t\n\t\n\n\t\n\t\n\t\n  \r');
+                var uri = 'data:text/plain;charset=utf-8,' + encodeURIComponent(text);
+                chrome.downloads.download({
+                    url: uri,
+                    filename: 'images.txt',
+                    saveAs: false
+                });
+            }
+        }
+    });
