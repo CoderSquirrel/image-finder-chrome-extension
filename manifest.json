@@ -1,6 +1,6 @@
 {
     "name": "Image Finder",
-    "version": "2.0",
+    "version": "3.0",
     "description": "Find all images links in a page!",
     "permissions": ["activeTab", "declarativeContent","downloads", "background"],
     "background": {
